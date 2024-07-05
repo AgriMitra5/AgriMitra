@@ -1,0 +1,33 @@
+/* Navbar.css */
+.navbar-custom .navbar-nav .nav-link.active {
+    color: red; /* Active link text color */
+    background-color: #ffffff; /* Active link background color */
+    border-radius: 4px; /* Rounded corners for active link */
+    padding: 6px 12px; /* Padding for active link */
+  }
+  
+  /* Navbar.css */
+.navbar-custom .navbar-brand {
+    margin-right: 1rem;
+    padding-left: 60px; /* Adjust margin for spacing */
+  }
+  .navbar-custom .navbar-brand img{
+    border-radius: 50%;
+    margin-right: 25px;
+  }
+
+  .navbar-custom .navbar-brand span {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  }
+
+
+  .navbar-custom .navbar-nav {
+    margin-left: auto; /* Pushes navbar items to the right */
+  }
+  
+  .navbar-custom .navbar-nav .nav-link {
+    margin-right: 30px; /* Add space between individual links */
+  }
+  

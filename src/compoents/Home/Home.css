@@ -1,0 +1,12 @@
+.carousel-item img {
+    width: 100%; /* Adjust as needed */
+    height: 500px; /* Fixed height, adjust as needed */
+    object-fit: cover; /* Ensure the image covers the entire space */
+  }
+  
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Example: semi-transparent black background for captions */
+    color: white; /* Example: white text for captions */
+    padding: 10px; /* Example: padding around captions */
+  }
+  
