@@ -1,0 +1,26 @@
+/* ProductCarousel.css */
+
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust height as needed */
+  }
+  
+  .card {
+    width: 18rem; /* Adjust card width */
+  }
+  
+  .card-img-top {
+    height: 200px; /* Adjust image height */
+    object-fit: cover; /* Ensure the image covers the area */
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .carousel-caption {
+    bottom: 0;
+  }
+  

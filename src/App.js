@@ -6,11 +6,13 @@ import Navbar from './compoents/Navbar/Navbar';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import HomeCarts from './compoents/HomeCarts/HomeCarts';
 function App() {
   return (
     <div >
  <Navbar/>
   <Home/>
+ 
   <Footer/>
   <ToastContainer />
     </div>

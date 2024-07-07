@@ -46,11 +46,11 @@ const Footer = () => {
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             {/* Content */}
             <h6 className="text-uppercase fw-bold mb-4">
-              <i className="fas fa-gem me-3"></i>Company name
+              <i className="fas fa-gem me-3"></i>AgriMitra
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
+            Empowering farmers through affordable access to top-quality equipment, 
+            enabling sustainable and efficient agricultural practices.
             </p>
           </div>
           {/* Grid column */}
@@ -62,16 +62,16 @@ const Footer = () => {
               Products
             </h6>
             <p>
-              <NavLink to="#!" className="text-reset">Angular</NavLink>
+              <NavLink to="#!" className="text-reset">Tractors</NavLink>
             </p>
             <p>
-              <NavLink to="#!" className="text-reset">React</NavLink>
+              <NavLink to="#!" className="text-reset">Cultivators</NavLink>
             </p>
             <p>
-              <NavLink to="#!" className="text-reset">Vue</NavLink>
+              <NavLink to="#!" className="text-reset">Sprayers</NavLink>
             </p>
             <p>
-              <NavLink to="#!" className="text-reset">Laravel</NavLink>
+              <NavLink to="#!" className="text-reset">Drones</NavLink>
             </p>
           </div>
           {/* Grid column */}
@@ -83,10 +83,10 @@ const Footer = () => {
               Useful links
             </h6>
             <p>
-              <NavLink to="#!" className="text-reset">Pricing</NavLink>
+              <NavLink to="#!" className="text-reset">Reviews</NavLink>
             </p>
             <p>
-              <NavLink to="#!" className="text-reset">Settings</NavLink>
+              <NavLink to="#!" className="text-reset">Offers</NavLink>
             </p>
             <p>
               <NavLink to="#!" className="text-reset">Orders</NavLink>
@@ -101,13 +101,13 @@ const Footer = () => {
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             {/* Links */}
             <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i className="fas fa-home me-3"></i> New York, NY 10012, US</p>
+            <p><i className="fas fa-home me-3"></i> Maharashtra, 411014, INDIA</p>
             <p>
               <i className="fas fa-envelope me-3"></i>
-              info@example.com
+              agrimitra@gmail.com
             </p>
-            <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
+            <p><i className="fas fa-phone me-3"></i> + 91 9325104345</p>
+            <p><i className="fas fa-print me-3"></i> + 91 8975078786</p>
           </div>
           {/* Grid column */}
         </div>
@@ -118,8 +118,8 @@ const Footer = () => {
 
     {/* Copyright */}
     <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-      © 2021 Copyright:
-      <NavLink className="text-reset fw-bold" to="https://mdbootstrap.com/">MDBootstrap.com</NavLink>
+     
+      <NavLink className="text-reset fw-bold" to="https://mdbootstrap.com/">AgriMitra.com</NavLink>
     </div>
     {/* Copyright */}
   </footer>

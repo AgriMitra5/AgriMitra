@@ -2,7 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useEffect ,React } from 'react';
-import { Link ,NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../assets/logo.png'
 import './Navbar.css'
@@ -49,8 +49,8 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/link" activeClassName="active">
-          Home
+          <NavLink className="nav-link" to="/register" activeClassName="active">
+          Become a Renter
           </NavLink>
         </li>
         <li className="nav-item">
@@ -64,7 +64,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/link3" activeClassName="active">
+          <NavLink className="nav-link" to="/register" activeClassName="active">
           Register
           </NavLink>
         </li>
