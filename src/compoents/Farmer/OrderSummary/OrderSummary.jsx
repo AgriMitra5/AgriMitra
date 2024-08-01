@@ -11,6 +11,10 @@ const OrderSummary = () => {
     return <div>No order details available</div>;
   }
 
+  const handlePayment = () => {
+    window.location.href = "https://pages.razorpay.com/pl_IXSwu7hiqjMGNx/view";
+  };
+
   return (
     <div className="order-summary container">
       <h1>Order Summary</h1>
@@ -53,7 +57,12 @@ const OrderSummary = () => {
           <strong>Total Cost:</strong> ${totalCost}
         </p>
       </div>
-      <button className="btn btn-primary payment-button">Go for Payment</button>
+      <button
+        className="btn btn-primary payment-button"
+        onClick={handlePayment}
+      >
+        Go for Payment
+      </button>
     </div>
   );
 };
