@@ -1,26 +1,60 @@
-/* ProductCarousel.css */
+.container_home {
+    padding: 20px;
+    width: auto;
+}
 
-.carousel-item {
+.custom-col {
+    padding: 10px;
+}
+
+.small-card {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px; /* Adjust height as needed */
-  }
-  
-  .card {
-    width: 18rem; /* Adjust card width */
-  }
-  
-  .card-img-top {
-    height: 200px; /* Adjust image height */
-    object-fit: cover; /* Ensure the image covers the area */
-  }
-  
-  .card-body {
-    text-align: center;
-  }
-  
-  .carousel-caption {
-    bottom: 0;
-  }
-  
+    flex-direction: column;
+    height: 80%;
+   
+    /* Ensure the card takes full height of the container */
+}
+
+.small-card-img {
+    height: 150px;
+    /* Adjust height as needed */
+    object-fit: cover;
+}
+
+.small-card-title {
+    font-size: 18px;
+    /* Adjust size as needed */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.small-card-text {
+    font-size: 15px;
+    /* Adjust size as needed */
+    margin-bottom: 10px;
+    /* Ensure there's spacing between text elements */
+    flex-wrap: wrap;
+}
+
+.text-muted {
+    font-size: 16px;
+}
+
+.owner-Name {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Ensures the body grows to fill available space */
+}
+
+.small-card .btn {
+    width: 100%;
+    margin-top: auto;
+    /* Pushes the button to the bottom of the card */
+}

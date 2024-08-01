@@ -1,0 +1,43 @@
+.social-media-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #007bff;
+    font-size: 20px;
+    font-weight: bold;
+  
+}
+
+.social-icon {
+    margin-left: 10px;
+    /* Adjust spacing between icons */
+    font-size: 24px;
+    /* Adjust icon size */
+    color: #000;
+    /* Default icon color */
+    transition: color 0.3s ease;
+    /* Smooth color transition */
+}
+.instagram_icon{
+    color: red;
+    cursor: pointer;
+}
+
+.facebook_icon{
+    color: blue;
+    cursor: pointer;
+}
+.whatsapp_icon{
+    color: green;
+    cursor: pointer;
+}
+
+.linkedin_icon{
+    color: rgb(13, 13, 201);
+    cursor: pointer;
+}
+
+.social-icon i {
+    vertical-align: middle;
+    /* Align icons vertically in the middle */
+}

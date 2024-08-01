@@ -1,4 +1,7 @@
 /* Navbar.css */
+.navbar-custom{
+  margin-bottom: 40px;
+}
 .navbar-custom .navbar-nav .nav-link.active {
     color: red; /* Active link text color */
     background-color: #ffffff; /* Active link background color */
