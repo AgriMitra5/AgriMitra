@@ -5,9 +5,10 @@ const FarmerLeft = ({ onFilterChange }) => {
   const [location, setLocation] = useState("");
   const [productName, setProductName] = useState("");
   const [renterName, setRenterName] = useState("");
+  const [sortOrder, setSortOrder] = useState(""); // For sorting
 
   const handleFilterChange = () => {
-    onFilterChange({ location, productName, renterName });
+    onFilterChange({ location, productName, renterName, sortOrder });
   };
 
   return (
@@ -41,13 +42,12 @@ const FarmerLeft = ({ onFilterChange }) => {
           }}
         />
       </div>
-
       <div className="form-group">
         <label htmlFor="owner">Owner Name</label>
         <input
           type="text"
           className="form-control"
-          id="Owner"
+          id="owner"
           placeholder="Enter Owner name"
           value={renterName}
           onChange={(e) => {
@@ -55,6 +55,43 @@ const FarmerLeft = ({ onFilterChange }) => {
             handleFilterChange();
           }}
         />
+      </div>
+
+      {/* Sorting Options */}
+      <div className="form-group">
+        <label>Sort By Price</label> 
+       
+        <div>
+          <input
+            type="radio"
+            id="sortLowToHigh"
+            name="sortOrder"
+            checked={sortOrder === "lowToHigh"}
+            onChange={() => {
+              setSortOrder("lowToHigh");
+              handleFilterChange();
+            }}
+          />
+          <label htmlFor="sortLowToHigh" className="ml-2">
+            Low to High
+          </label>
+          
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="sortHighToLow"
+            name="sortOrder"
+            checked={sortOrder === "highToLow"}
+            onChange={() => {
+              setSortOrder("highToLow");
+              handleFilterChange();
+            }}
+          />
+          <label htmlFor="sortHighToLow" className="ml-2">
+            High to Low
+          </label>
+        </div>
       </div>
     </div>
   );

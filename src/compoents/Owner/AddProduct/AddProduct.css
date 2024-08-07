@@ -1,0 +1,16 @@
+/* AddProduct.css */
+
+.container {
+    max-width: 600px;
+}
+
+.uploaded-images img {
+    max-width: 100px;
+    margin: 5px;
+}
+
+.img-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+}

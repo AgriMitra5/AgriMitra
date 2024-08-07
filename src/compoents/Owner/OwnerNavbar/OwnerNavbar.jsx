@@ -14,8 +14,8 @@ const OwnerNavbar = () => {
           <Nav.Link as={NavLink} exact to="/owner-dashboard/profile">
             Profile
           </Nav.Link>
-          <Nav.Link as={NavLink} to="/owner-dashboard/addproducts">
-            Add Products
+          <Nav.Link as={NavLink} to="/owner-dashboard/showproducts">
+            Show Products
           </Nav.Link>
           <Nav.Link as={NavLink} to="/owner-dashboard/history">
             View History

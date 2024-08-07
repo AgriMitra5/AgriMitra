@@ -8,6 +8,7 @@ const FarmerMain = () => {
     location: "",
     productName: "",
     renterName: "",
+    sortOrder: "", // Added sortOrder
   });
 
   const handleFilterChange = (newFilters) => {
@@ -28,6 +29,17 @@ const FarmerMain = () => {
     return matchesLocation && matchesProductName && matchesOwner;
   });
 
+  // Apply sorting based on the sortOrder
+  const sortedProducts = filteredProducts.sort((a, b) => {
+    if (filters.sortOrder === "lowToHigh") {
+      return a.price - b.price;
+    } else if (filters.sortOrder === "highToLow") {
+      return b.price - a.price;
+    } else {
+      return 0; // No sorting if no sortOrder is selected
+    }
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -45,7 +57,7 @@ const FarmerMain = () => {
           className="col-md-9"
           style={{ border: "2px solid #ddd", padding: "15px" }}
         >
-          <FarmerRight products={filteredProducts} />
+          <FarmerRight products={sortedProducts} />
         </div>
       </div>
     </div>

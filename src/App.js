@@ -18,10 +18,14 @@ import FarmerMain from "./compoents/Farmer/FarmerMain/FarmerMain";
 import ProductDetailPage from "./compoents/Farmer/FarmerRight/ProductDetailPage";
 import NotFound from "./compoents/NotFound/NotFound";
 import Profile from "./compoents/Owner/Profile/Profile";
-import CrudProducts from "./compoents/Owner/AddProducts/CrudProducts";
-import History from "./compoents/Owner/History/History";
+
+import History from "./compoents/Owner/OHistory/History";
 import Notification from "./compoents/Owner/Notification/Notification";
 import OrderSummary from "./compoents/Farmer/OrderSummary/OrderSummary";
+import ShowProducts from "./compoents/Owner/ShowProducts/ShowProducts";
+import AddProduct from "./compoents/Owner/AddProduct/AddProduct";
+import ViewPage from "./compoents/Owner/ViewPage/ViewPage";
+import UpdateProduct from "./compoents/Owner/UpdateProduct/UpdateProduct";
 function App() {
   return (
     <>
@@ -38,8 +42,24 @@ function App() {
 
         <Route path="/owner-dashboard" element={<OwnerMain />} />
         <Route path="/owner-dashboard/profile" element={<Profile />} />
-        <Route path="/owner-dashboard/addproducts" element={<CrudProducts />} />
+        <Route
+          path="/owner-dashboard/showproducts"
+          element={<ShowProducts />}
+        />
         <Route path="/owner-dashboard/history" element={<History />} />
+        <Route
+          path="/owner-dashboard/showproducts/add-product"
+          element={<AddProduct />}
+        />
+        <Route
+          path="/owner-dashboard/showproducts/view-product/:name"
+          element={<ViewPage />}
+        />
+        <Route
+          path="/owner-dashboard/showproducts/update-product/:name"
+          element={<UpdateProduct />}
+        />
+
         <Route
           path="/owner-dashboard/notification"
           element={<Notification />}

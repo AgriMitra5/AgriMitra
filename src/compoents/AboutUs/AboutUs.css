@@ -1,0 +1,68 @@
+/* src/components/AboutUs/AboutUs.css */
+
+.custom-container {
+  max-width: 950px; /* Adjust the maximum width as needed */
+  width: 100%;
+  margin: 0 auto; /* Center the container */
+}
+
+.custom-img {
+  width: 100%;
+  max-width: none; /* Remove any max-width restriction */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 0.5rem;
+ 
+}
+
+.custom-heading {
+  font-size: 2rem;
+  color: #333;
+}
+
+.custom-text {
+  font-size: 1.10rem; /* Increased font size */
+  line-height: 1.6;
+  text-align: justify; /* Justify the text */
+  text-justify: inter-word; 
+  
+}
+
+.custom-list-item {
+  font-size: 0.8rem; /* Adjust size if needed */
+  line-height: 1.6;
+  margin-bottom: 0.5rem; /* Add some space between items */
+  
+}
+
+/* Add custom bullet point styling */
+ul {
+  padding-left: 0.1rem; /* Add padding for bullets */
+ 
+}
+
+ul.custom-list {
+  list-style-type: none; /* Remove default bullets */
+  padding-right: 20px;
+  text-align: justify; /* Justify the text */
+  text-justify: inter-word; 
+}
+
+ul.custom-list li svg {
+  margin-right: 1rem; /* Adjust spacing between SVG and text */
+ 
+}
+
+.btn-green {
+  background-color: green;
+  color: white;
+  border: none;
+}
+
+.btn-green:hover {
+  background-color: darkgreen;
+  color: white;
+}
+
+
+
+

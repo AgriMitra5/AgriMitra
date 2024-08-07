@@ -4,7 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./Footer.css";
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
+    <footer className=" text-center text-lg-start bg-body-tertiary text-muted">
       {/* Section: Social media */}
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         {/* Left */}

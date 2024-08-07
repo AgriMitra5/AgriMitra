@@ -1,0 +1,40 @@
+/* src/components/PageNotFound.css */
+
+body, html {
+    height: 100%;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .min-vh-100 {
+    min-height: 100vh;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .col-md-12 {
+    width: 100%;
+  }
+  
+  .btn-primary {
+    background-color: rgb(12, 185, 12);
+    border-color: rgb(5, 155, 5);
+  }
+  
+  .btn-primary:hover {
+    background-color: #057005;
+    border-color: green;
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem;
+  }
+  
+  h1{
+    font-size: 3rem; /* Adjust the size as needed */
+  color: red;
+  }
