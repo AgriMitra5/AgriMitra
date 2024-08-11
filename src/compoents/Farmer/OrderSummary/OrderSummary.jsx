@@ -7,6 +7,9 @@ const OrderSummary = () => {
   const { product, numberOfDays, costPerDay, totalCost, userName, userMobile } =
     location.state || {};
 
+  const depositMoney = 5000; 
+  const finalAmount = (totalCost || 0) + depositMoney;
+
   if (!product) {
     return <div>No order details available</div>;
   }
@@ -23,10 +26,10 @@ const OrderSummary = () => {
           <div className="section farmer-details">
             <h2>Farmer Details</h2>
             <p>
-              <strong>Name:</strong> {userName}
+              <strong>Name:</strong> {userName || "N/A"}
             </p>
             <p>
-              <strong>Mobile Number:</strong> {userMobile}
+              <strong>Mobile Number:</strong> {userMobile || "N/A"}
             </p>
           </div>
         </div>
@@ -46,7 +49,7 @@ const OrderSummary = () => {
               <strong>Number of Days:</strong> {numberOfDays}
             </p>
             <p>
-              <strong>Cost per Day:</strong> ${costPerDay}
+              <strong>Cost per Day:</strong> {costPerDay}
             </p>
           </div>
         </div>
@@ -54,7 +57,10 @@ const OrderSummary = () => {
       <div className="section final-amount">
         <h2>Final Amount</h2>
         <p>
-          <strong>Total Cost:</strong> ${totalCost}
+          <strong>Deposit Money:</strong> ₹{depositMoney}
+        </p>
+        <p>
+          <strong>Total Cost (Asset + Deposit):</strong> ₹{finalAmount.toFixed(2)}
         </p>
       </div>
       <button

@@ -77,6 +77,10 @@ const ShowProducts = () => {
               >
                 Update
               </Button>
+
+              <Button >
+                Make it Available 
+              </Button>
             </div>
           </div>
         ))}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FarmerLeft from "../FarmerLeft/FarmerLeft";
 import FarmerRight from "../FarmerRight/FarmerRight";
 import ProductData from "../../../Data/ProductData/ProductData";
+import axios from "axios";
 
 const FarmerMain = () => {
   const [filters, setFilters] = useState({
@@ -42,6 +43,19 @@ const FarmerMain = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchdata = (async () => {
+      try {
+        const response = await axios.get("/asset/all");
+        console.log("farmerDetails", response);
+      }
+      catch (error) {
+        console.log(error);
+      }
+    })
+    fetchdata();
   }, []);
 
   return (

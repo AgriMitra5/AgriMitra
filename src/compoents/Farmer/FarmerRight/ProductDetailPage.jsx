@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Carousel, Col, Row, Button, Form } from "react-bootstrap";
-import { NavLink, useParams, useNavigate } from "react-router-dom"; // Added useNavigate
-import ProductData from "../../../Data/ProductData/ProductData"; // Adjust the path as necessary
+import { useParams, useNavigate } from "react-router-dom"; 
+import ProductData from "../../../Data/ProductData/ProductData"; 
 import "./ProductDetailPage.css";
 
 const ProductDetailPage = () => {
   const { name } = useParams();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
   const product = ProductData.find((p) => p.name === name);
 
   const [numberOfDays, setNumberOfDays] = useState(1);
-  const [costPerDay, setCostPerDay] = useState(product.costPerDay || 0);
+  const [costPerDay, setCostPerDay] = useState(product?.costPerDay || 0);
   const [totalCost, setTotalCost] = useState(0);
 
   const updateTotalCost = (days, cost) => {
@@ -44,7 +44,7 @@ const ProductDetailPage = () => {
         product,
         numberOfDays,
         costPerDay,
-        totalCost,
+        totalCost: parseFloat(formattedTotalCost), // Ensure totalCost is passed as a number
       },
     });
   };
@@ -80,7 +80,7 @@ const ProductDetailPage = () => {
                   <Form.Label>Cost per Day</Form.Label>
                   <Form.Control
                     type="number"
-                    value={costPerDay}
+                    value={`${costPerDay}`}
                     onChange={handleCostChange}
                   />
                 </Form.Group>
@@ -88,7 +88,7 @@ const ProductDetailPage = () => {
                   <Form.Label>Total Cost</Form.Label>
                   <Form.Control
                     type="text"
-                    value={`$${formattedTotalCost}`}
+                    value={`₹${formattedTotalCost}`}
                     readOnly
                   />
                 </Form.Group>
@@ -109,9 +109,6 @@ const ProductDetailPage = () => {
             <p className="product_cost">
               <strong>Cost per day:</strong> {product.costPerDay}
             </p>
-            <Button variant="primary" className="availability-button">
-              Check Availability
-            </Button>
 
             <Button
               variant="success"

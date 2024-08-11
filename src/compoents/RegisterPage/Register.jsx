@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import logo from "../assets/logo.png";
 import "./Register.css";
 
@@ -9,10 +10,12 @@ const Register = () => {
     aadhar: "",
     email: "",
     password: "",
+    roleId: "1", // Default roleId
     termsAccepted: false,
   });
 
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
 
   const validateField = (field, value) => {
     let error = "";
@@ -23,13 +26,13 @@ const Register = () => {
         break;
       case "mobile":
         if (!value) error = "Mobile number is required.";
-        else if (!/^\d{0,10}$/.test(value)) error = "Mobile number can only contain digits and must be exactly 10 digits.";
-        else if (value.length !== 10) error = "Mobile number must be exactly 10 digits.";
+        else if (!/^\d{10}$/.test(value))
+          error = "Mobile number must be exactly 10 digits.";
         break;
       case "aadhar":
         if (!value) error = "Aadhar number is required.";
-        else if (!/^\d{0,12}$/.test(value)) error = "Aadhar number can only contain digits and must be exactly 12 digits.";
-        else if (value.length !== 12) error = "Aadhar number must be exactly 12 digits.";
+        else if (!/^\d{12}$/.test(value))
+          error = "Aadhar number must be exactly 12 digits.";
         break;
       case "email":
         if (!value) error = "Email is required.";
@@ -60,20 +63,12 @@ const Register = () => {
   };
 
   const handleChange = (e) => {
-    const { id, value, type, checked } = e.target;
+    const { id, value, checked, type } = e.target;
     const newValue = type === "checkbox" ? checked : value;
 
-    if (id === "mobile") {
-      // Restrict mobile to digits only and max length 10
-      const formattedValue = value.replace(/\D/g, '').slice(0, 10);
-      setFormData((prevData) => ({
-        ...prevData,
-        [id]: formattedValue,
-      }));
-      validateField(id, formattedValue);
-    } else if (id === "aadhar") {
-      // Restrict aadhar to digits only and max length 12
-      const formattedValue = value.replace(/\D/g, '').slice(0, 12);
+    if (id === "mobile" || id === "aadhar") {
+      const maxLength = id === "mobile" ? 10 : 12;
+      const formattedValue = value.replace(/\D/g, "").slice(0, maxLength);
       setFormData((prevData) => ({
         ...prevData,
         [id]: formattedValue,
@@ -88,15 +83,37 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isFormValid = Object.keys(formData).every((field) =>
       validateField(field, formData[field])
     );
 
     if (isFormValid) {
-      // Submit form data
-      console.log("Form submitted", formData);
+      try {
+        const response = await axios.post("http://localhost:8080/register", {
+          name: formData.name,
+          mobileNo: formData.mobile,
+          aadharNo: formData.aadhar,
+          email: formData.email,
+          password: formData.password,
+          roleId: formData.roleId,
+        }, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.status === 201) {
+          setMessage("Registration successful!");
+        } else {
+          setMessage("Registration failed.");
+        }
+      } catch (error) {
+        setMessage(error.response ? error.response.data.message : "An error occurred.");
+      }
+    } else {
+      setMessage("Please fix the validation errors before submitting.");
     }
   };
 
@@ -114,9 +131,7 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         {/* Name Field */}
         <div className="form-group">
-          <label htmlFor="name">
-            Name <span className="text-danger">*</span>
-          </label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             className={`form-control ${errors.name ? "is-invalid" : ""}`}
@@ -125,18 +140,12 @@ const Register = () => {
             value={formData.name}
             onChange={handleChange}
           />
-          {errors.name && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.name}
-            </div>
-          )}
+          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
         </div>
 
         {/* Mobile Number Field */}
         <div className="form-group">
-          <label htmlFor="mobile">
-            Mobile Number <span className="text-danger">*</span>
-          </label>
+          <label htmlFor="mobile">Mobile Number</label>
           <input
             type="tel"
             className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
@@ -145,18 +154,12 @@ const Register = () => {
             value={formData.mobile}
             onChange={handleChange}
           />
-          {errors.mobile && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.mobile}
-            </div>
-          )}
+          {errors.mobile && <div className="invalid-feedback">{errors.mobile}</div>}
         </div>
 
         {/* Aadhar Card Number Field */}
         <div className="form-group">
-          <label htmlFor="aadhar">
-            Aadhar Card Number <span className="text-danger">*</span>
-          </label>
+          <label htmlFor="aadhar">Aadhar Card Number</label>
           <input
             type="text"
             className={`form-control ${errors.aadhar ? "is-invalid" : ""}`}
@@ -165,32 +168,21 @@ const Register = () => {
             value={formData.aadhar}
             onChange={handleChange}
           />
-          {errors.aadhar && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.aadhar}
-            </div>
-          )}
+          {errors.aadhar && <div className="invalid-feedback">{errors.aadhar}</div>}
         </div>
 
         {/* Email Field */}
         <div className="form-group">
-          <label htmlFor="email">
-            Email address <span className="text-danger">*</span>
-          </label>
+          <label htmlFor="email">Email address</label>
           <input
             type="email"
             className={`form-control ${errors.email ? "is-invalid" : ""}`}
             id="email"
-            aria-describedby="emailHelp"
             placeholder="Enter email"
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.email}
-            </div>
-          )}
+          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
           </small>
@@ -198,9 +190,7 @@ const Register = () => {
 
         {/* Password Field */}
         <div className="form-group">
-          <label htmlFor="password">
-            Password <span className="text-danger">*</span>
-          </label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className={`form-control ${errors.password ? "is-invalid" : ""}`}
@@ -209,39 +199,47 @@ const Register = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.password}
-            </div>
-          )}
+          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+        </div>
+
+        {/* Role ID Field */}
+        <div className="form-group">
+          <label htmlFor="roleId">Role ID</label>
+          <select
+            className={`form-control ${errors.roleId ? "is-invalid" : ""}`}
+            id="roleId"
+            value={formData.roleId}
+            onChange={handleChange}
+          >
+            <option value="1">Owner</option>
+            <option value="2">Farmer</option>
+          </select>
+          {errors.roleId && <div className="invalid-feedback">{errors.roleId}</div>}
         </div>
 
         {/* Terms and Conditions Checkbox */}
         <div className="form-group form-check">
           <input
             type="checkbox"
-            className={`form-check-input ${
-              errors.termsAccepted ? "is-invalid" : ""
-            }`}
+            className={`form-check-input ${errors.termsAccepted ? "is-invalid" : ""}`}
             id="termsAccepted"
             checked={formData.termsAccepted}
             onChange={handleChange}
           />
           <label className="form-check-label" htmlFor="termsAccepted">
-            I accept all terms and conditions <span className="text-danger">*</span>
+            I accept all terms and conditions
           </label>
-          {errors.termsAccepted && (
-            <div className="invalid-feedback" style={{ color: "red" }}>
-              {errors.termsAccepted}
-            </div>
-          )}
+          {errors.termsAccepted && <div className="invalid-feedback">{errors.termsAccepted}</div>}
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={!formData.termsAccepted}>
           Submit
         </button>
       </form>
+
+      {/* Display Message */}
+      {message && <div className="text-center mt-3"><p>{message}</p></div>}
 
       {/* Login Link */}
       <div className="text-center mt-3">

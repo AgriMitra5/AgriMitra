@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import logo from "../assets/logo.png";
 import "./Login.css";
-import UserData from "../../Data/FarmerData"; // Import UserData
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -69,7 +69,7 @@ const Login = () => {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     // Validate all fields before submitting
@@ -78,28 +78,29 @@ const Login = () => {
     validateField("role", role);
 
     if (Object.keys(errors).length === 0) {
-      // Find user in UserData
-      const user = UserData.find(
-        (user) =>
-          user.username === username &&
-          user.mobileNumber === mobileNumber &&
-          user.password === password &&
-          user.role === role
-      );
+      try {
+        const response = await axios.post("http://localhost:8080/login", {
+          name: username,
+          mobileNo: mobileNumber,
+          password: password,
+          roleId: role === "Farmer" ? "2" : "1",
+        });
 
-      if (user) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("role", role);
-        localStorage.setItem("userName", user.name); // Save the user's name
+        if (response.status === 200) {
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("role", role);
+          localStorage.setItem("userName", response.data.data.name);
 
-        // Redirect based on the role
-        if (role === "Farmer") {
-          navigate("/farmer-dashboard/productList");
-        } else if (role === "Owner") {
-          navigate("/owner-dashboard");
+          if (role === "Farmer") {
+            navigate("/farmer-dashboard/productList");
+          } else if (role === "Owner") {
+            navigate("/owner-dashboard");
+          }
+        } else {
+          alert("Login failed: " + response.data.message);
         }
-      } else {
-        alert("Invalid credentials or role");
+      } catch (error) {
+        alert("Login failed: " + error.message);
       }
     }
   };
