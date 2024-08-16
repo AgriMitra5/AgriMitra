@@ -15,6 +15,7 @@ const Equipment = () => {
     modelyear: '',
     varid: '',
   })
+
   useEffect(() => {
     axios.get(BASE_URL + 'api/variants').then((resp) => {
       setVariants(resp.data)
@@ -26,9 +27,31 @@ const Equipment = () => {
     setBike({ ...bike, [e.target.name]: e.target.value })
   }
 
+  const validateProductNumber = (id) => {
+    const idPattern = /^[a-zA-Z0-9]{4,}$/; // At least 4 characters, alphanumeric
+    return id > 0 && idPattern.test(id);
+  }
+
+  const validateModelYear = (year) => {
+    const yearPattern = /^[1-9]\d{3}$/; // Exactly 4 digits, not starting with 0
+    const currentYear = new Date().getFullYear();
+    return year > 2010 && yearPattern.test(year) && year <= currentYear;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(bike)
+    
+    if (!validateProductNumber(bike.id)) {
+      toast.error('Product No must be greater than 0, at least 4 characters, and contain only digits and alphabets.')
+      return
+    }
+
+    if (!validateModelYear(bike.modelyear)) {
+      toast.error('Model Year must be greater than 2010, exactly 4 digits, and not exceed the current year.')
+      return
+    }
+
     if (bike.id === '' || bike.modelyear === '' || bike.varid === '') {
       toast.error('Please provide required details')
     } else {
@@ -83,6 +106,7 @@ const Equipment = () => {
       setData(resp.data)
     })
   }
+
   return (
     <>
       <div className='content-wrapper p-2'>

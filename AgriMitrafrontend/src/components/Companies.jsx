@@ -6,15 +6,18 @@ const Companies = () => {
   const [data, setData] = useState([])
   const BASE_URL = process.env.REACT_APP_BACKEND_URL
   const [company, setCompany] = useState('')
+
   useEffect(() => {
     loadData()
   }, [])
+
   const loadData = () => {
     axios.get(BASE_URL + 'api/companies').then((resp) => {
       console.log(resp.data)
       setData(resp.data)
     })
   }
+
   const handleDelete = (id) => {
     const result = window.confirm('Are you sure to delete this company ?')
     if (result) {
@@ -27,8 +30,12 @@ const Companies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    // Check if company name contains only alphabets
+    const alphabetRegex = /^[A-Za-z\s]+$/
     if (company === '') {
-      toast.error('Please provide company name')
+      toast.error('Please provide a company name')
+    } else if (!alphabetRegex.test(company)) {
+      toast.error('Company name must contain only alphabets')
     } else {
       axios
         .post(BASE_URL + 'api/companies', { compname: company })
@@ -38,7 +45,7 @@ const Companies = () => {
           loadData()
         })
         .catch((error) => {
-          toast.error(error)
+          toast.error(error.response.data.message || error.message)
         })
     }
   }
@@ -95,6 +102,7 @@ const Companies = () => {
                     onChange={(e) => setCompany(e.target.value)}
                     className='form-control'
                     name='compname'
+                    required
                   />
                 </div>
                 <input
